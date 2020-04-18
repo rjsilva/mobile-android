@@ -1,0 +1,261 @@
+const texto = "quando clico em Decameter";
+
+  const intentions = [ "click", "fill", "scroll", "select"]
+  const possebilities = ["foot", "Decameter"]
+
+  var possibility = "";
+
+  switch(true){
+    case texto.includes("foot"):
+      possibility = possebilities[0];
+      console.log("minha possibilidade é ==========================> " + possibility);
+      break;
+    case texto.includes("Decameter"):
+      possibility = possebilities[1];
+      console.log("minha possibilidade é ==========================> " + possibility);
+      break;
+      default:
+        console.log("não existe essa possibilidade ==========================> " + possibility)
+  }
+
+  var intention = "";
+
+  switch(true){
+    case texto.includes("clico"):
+      intention = intentions[0];
+      console.log("minha intenção é ==========================> " + intention);
+      break;
+      case texto.includes("preencher"):
+        intention = intentions[1];
+        console.log("minha intenção é ==========================> " + intention);
+        break;
+      case texto.includes("navego"):
+        intention = intentions[2];
+        console.log("minha intenção é ==========================> " + intention);
+        break;
+      case texto.includes("seleciono"):
+        intention = intentions[3];
+        console.log("minha intenção é ==========================> " + intention);
+        break;
+      default:
+        console.log("não existe essa intenção")
+  }
+
+
+  if(intention === "click"){
+
+    /*
+    const menu = await client.$('~Open navigation drawer');
+    await menu.click();
+
+    const selector = 'new UiSelector().text("Unit Converter").className("android.widget.TextView")';
+    const value = await (await client.$(`android=${selector}`)).getText();
+    console.log("VALOR ==========================> " + value);
+    assert.equal(value,"Unit Converter");
+    const conversation = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/drawerCategoryName")');
+    await conversation.click();
+    */
+
+    /*
+    const favorito = await client.$('~Add to favorites');
+    await favorito.click();
+
+    const menu = await client.$('~Open navigation drawer');
+    await menu.click();
+
+    const Favoriteconversation = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/drawerCategoryName")');
+    await Favoriteconversation.click();
+
+    const length = 'new UiSelector().text("Length").className("android.widget.TextView")';
+    const lengthValue = await (await client.$(`android=${length}`)).getText();
+    assert.equal(lengthValue,"Length");
+    //const number = await (await client.$('//android.widget.Button[@text="'+possibility+'"]'));
+    //number.click();
+    const myConversation = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/drawerCategoryName")');
+    await myConversation.click();
+
+    */
+
+    /*
+   const menu = await client.$('~Open navigation drawer');
+   await menu.click();
+
+   
+
+   const myConversation = await client.$('//android.widget.TextView[@text="My conversions"]')
+   await myConversation.click();
+
+   const create = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/btn_new_custom_conversion")');
+   await create.click();
+
+   const name = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/edit_custom_conversion_category_name")');
+   await name.setValue("power");
+
+   const unit = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/btn_new_custom_unit")');
+   await unit.click();
+
+   const dtlName = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/edit_custom_conversion_unit_dtls_name")');
+   await dtlName.setValue("horse power");
+
+   const symbol = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/edit_custom_conversion_unit_dtls_symbol")');
+   await symbol.setValue("hp");
+
+   const value = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/edit_custom_conversion_unit_dtls_value")');
+   await value.setValue("1");
+
+   const confirm = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/action_confirm_custom_unit")');
+   await confirm.click();
+
+   const ok = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/btn_custom_conversion_details_ok")');
+   await ok.click();
+   */
+
+  const lupa = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/action_search")');
+  await lupa.click();
+
+  const search = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/search_src_text")');
+  await search.setValue("Temperature");
+  await client.touchAction({
+    action: 'tap',
+    x: 99,
+    y: 99
+  });
+
+    
+   const nomes = await client.$('android=new UiSelector().resourceId("com.ba.universalconverter:id/select_unit_spinner")');
+   await nomes.click();
+
+
+   //const decameter = await client.$('//android.widget.Button[@text="Decameter"]');
+  
+
+  flag = true
+  while(flag){
+  try{
+    //const teste = decameter = await (await client.$('//android.widget.TextView[@text="Decameter"]')).isEnabled();
+    const decaFlag = decameter = await (await client.$('//android.widget.TextView[@text="'+possibility+'"]')).isDisplayed();
+    console.log("========================= o elemento está visivel ? " + decaFlag);
+    if(decaFlag){
+      const deca = await client.$('//android.widget.TextView[@text="'+possibility+'"]');
+      await deca.click();
+      flag = false;
+    }
+   console.log("========================== fazendo scroll a procura do elemento");
+   const from = { x: 0.5, y:0.2 }
+   const to = { x: 0.5, y:0.99 }
+   await client.touchPerform([{
+    action: 'press',
+    options: from,
+    }, {
+        action: 'wait',
+        options: { ms: 1000 },
+    }, {
+        action: 'moveTo',
+        options: to,
+    }, {
+        action: 'release',
+    }]);
+    client.pause(1000)
+    //const deca = await client.$('//android.widget.TextView[@text="'+possibility+'"]');
+    //if(deca.isExisting())
+    //break;
+  }catch(err){
+        throw("não existe essa possibilidade " + possibility);
+     }
+  }
+}
+    //const element_2 = await (await client.$('//android.widget.ImageButton[@text='+possibility+']'));
+    //const element_3 = await (await client.$('//android.widget.ImageView[@text='+possibility+']'));
+    //const element_4 = await (await client.$('//android.widget.Button[@text='+possibility_2+']'));
+    //const element_5 = await (await client.$('//android.widget.ImageButton[@text='+possibility_2+']'));
+    //const element_6 = await (await client.$('//android.widget.ImageView[@text='+possibility_2+']'));
+    console.log("===========================caiu na estrategia========================================>");
+
+ 
+    client.saveScreenshot("/Users/ronaldosilva/Downloads/teste.png");
+
+    
+    /*
+    if(number.isDisplayed()){
+      
+    }else if ((await client.$('//android.widget.ImageButton[@text='+possibility+']')).isClickable()){
+      client.$('//android.widget.ImageButton[@text='+possibility+']').click();
+    }else if((await client.$('//android.widget.ImageView[@text='+possibility+']')).isClickable()){
+      client.$('//android.widget.ImageView[@text='+possibility+']').click();
+    }else{
+      console.log("todas as intenções de clique falharam")
+    }
+  }
+  */
+
+  /*
+  await number.click();
+
+  //===================================ELEMENTO BY XPATH===================================
+  const number = await client.$('//android.widget.Button[@text='8']');
+  await number.click();
+  //===================================END===================================
+  
+  //=====================ELEMENTO VIA RESOURCE_ID===================================
+  //await client.pause(1000)
+  //const button_8 =  await client.$('android=new UiSelector().resourceId("com.google.android.calculator:id/digit_8")');
+  //await button_8.click();
+
+  //await client.pause(1000)
+  const button_mais = await client.$('android=new UiSelector().resourceId("com.google.android.calculator:id/op_add")');
+  await await button_mais.click();
+
+  //await client.pause(1000)
+  const button_3 = await client.$('android=new UiSelector().resourceId("com.google.android.calculator:id/digit_3")');
+  await await button_3.click();
+
+  //await client.pause(1000)
+  const button_equal = await client.$('android=new UiSelector().resourceId("com.google.android.calculator:id/eq")');
+  await await button_equal.click();
+  
+  //await client.pause(1000)
+  const result = await client.$('android=new UiSelector().resourceId("com.google.android.calculator:id/result_final")');
+  const value = await result.getText();
+
+  //===================================END===================================
+
+  const menu = await (await client.$('~More options')).isEnabled();
+  console.log("estado do elemento =========== " + menu);
+  if(menu === true){
+    await (await client.$('~More options')).click();
+  }
+
+  const history = await client.$('//android.widget.LinearLayout[1]/android.widget.LinearLayout/android.widget.RelativeLayout/android.widget.TextView');
+  await history.click();
+  const element = await client.$('//android.widget.TextView[@text="History"])');
+  client.touchScroll({el: element, xOffset: 10, yOffset: 100});
+  assert.equal(value,"11");
+
+  client.pause(2000);
+
+
+  //===================================ELEMENTO VIA TEXTO===================================
+  //await client.pause(2000)
+  //const resultClick = await client.$('android=new UiSelector().text("C")');
+  //await resultClick.click();
+  //===================================END===================================
+
+  
+  //===================================ELEMENTO VIA ACESSEBILITY_ID===================================
+  //await client.pause(1000);
+  //const resultClick = await client.$('~clear');
+  //await resultClick.click();
+  //===================================END===================================
+
+  //===================================ELEMENTO VIA INDEX===================================
+  //await client.pause(1000);
+  //const resultClick = await client.$('android=new UiSelector().index(0)');
+  //await resultClick.click();
+  //===================================END===================================
+*/
+
+//================================scroll=======================================
+
+
+
+//=======================END===================================

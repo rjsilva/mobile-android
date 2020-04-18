@@ -1,0 +1,27 @@
+{
+  "name": "automation-android",
+  "version": "1.0.0",
+  "description": "",
+  "main": "run.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon run.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "appium": "1.17.0",
+    "canvas": "^2.6.1",
+    "imagemin": "^7.0.1",
+    "imagemin-jpegtran": "^6.0.0",
+    "imagemin-pngquant": "^8.0.0",
+    "png-to-jpeg": "^1.0.1",
+    "resize-base64": "^1.0.12",
+    "resize-img": "^2.0.0",
+    "webdriverio": "5.22.4"
+  },
+  "devDependencies": {
+    "grunt-contrib-imagemin": "^4.0.0"
+  }
+}
